@@ -45,7 +45,7 @@ export default async function handler(
     //sending message
     await sendTelegramPhoto(
       `https:${assetUrl}`,
-      `Hello subscribers!! We just released a new recipe for you.<br/>Today's recipe is <strong>${data.title}</strong>`,
+      `Hello subscribers!! We just released a new recipe.<br/>Today's recipe is <strong>${data.title}</strong>`,
       "Read more",
       `https://yourawesomewebsite.com/${data.slug}`
     );
