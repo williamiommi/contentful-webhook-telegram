@@ -1,0 +1,20 @@
+{
+  "name": "contentful-webhook-telegram",
+  "module": "index.ts",
+  "type": "module",
+  "devDependencies": {
+    "@tsconfig/recommended": "^1.0.3",
+    "@vercel/node": "^3.0.9",
+    "bun-types": "latest",
+    "dotenv": "^16.3.1"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "contentful-management": "^11.5.1",
+    "crypto": "^1.0.1",
+    "grammy": "^1.19.2",
+    "telegraf": "^4.15.0"
+  }
+}
