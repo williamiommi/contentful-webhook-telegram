@@ -1,10 +1,10 @@
-import contentful from "contentful-management";
+import { createClient } from "contentful-management";
 import { Bot, InlineKeyboard } from "grammy";
 
 const DEFAULT_LOCALE = "en-US";
 
 const cmaClient = (environmentId, spaceId) =>
-  contentful.createClient(
+  createClient(
     {
       accessToken: process.env.CMA_TOKEN,
     },
