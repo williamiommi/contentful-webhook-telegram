@@ -1,5 +1,6 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
-import { cmaClient, sendTelegramPhoto } from "../lib/utils";
+import contentful from "contentful-management";
+import { Bot, InlineKeyboard } from "grammy";
 
 const DEFAULT_LOCALE = "en-US";
 
@@ -14,10 +15,35 @@ interface ContentfulPayload {
   };
 }
 
-export default async function handler(
-  request: VercelRequest,
-  response: VercelResponse
-) {
+const cmaClient = (environmentId: string, spaceId: string) =>
+  contentful.createClient(
+    {
+      accessToken: process.env.CMA_TOKEN!,
+    },
+    { type: "plain", defaults: { environmentId, spaceId } }
+  );
+
+const getInlineLink = (linkText?: string, linkUrl?: string) => {
+  if (!linkText || !linkUrl) return undefined;
+  return new InlineKeyboard().url(linkText, linkUrl);
+};
+
+const sendTelegramPhoto = async (
+  photoUrl: string,
+  caption?: string,
+  linkText?: string,
+  linkUrl?: string
+) => {
+  const bot = new Bot(String(process.env.BOT_TOKEN));
+  const inlineLink = getInlineLink(linkText, linkUrl);
+
+  await bot.api.sendPhoto(String(process.env.TELEGRAM_CHANNEL), photoUrl, {
+    ...(caption && { parse_mode: "HTML", caption }),
+    ...(inlineLink && { reply_markup: inlineLink }),
+  });
+};
+
+const handler = async (request: VercelRequest, response: VercelResponse) => {
   try {
     // accept only POST
     if (request.method?.toUpperCase() !== "POST")
@@ -45,7 +71,7 @@ export default async function handler(
     //sending message
     await sendTelegramPhoto(
       `https:${assetUrl}`,
-      `Hello subscribers!! We just released a new recipe.<br/>Today's recipe is <strong>${data.title}</strong>`,
+      `Hello subscribers!! We just released a new recipe.\nToday's recipe is <strong>${data.title}</strong>`,
       "Read more",
       `https://yourawesomewebsite.com/${data.slug}`
     );
@@ -55,4 +81,6 @@ export default async function handler(
   }
 
   response.status(200).send("");
-}
+};
+
+export default handler;

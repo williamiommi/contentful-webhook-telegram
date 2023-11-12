@@ -1,7 +1,7 @@
 {
   "name": "contentful-webhook-telegram",
-  "module": "index.ts",
-  "type": "commonjs",
+  "main": "index.ts",
+  "type": "module",
   "devDependencies": {
     "@tsconfig/recommended": "^1.0.3",
     "@vercel/node": "^3.0.9",
