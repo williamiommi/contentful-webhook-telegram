@@ -1,5 +1,5 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
-import { cmaClient, sendTelegramPhoto } from "../lib/utils.js";
+import { cmaClient, sendTelegramPhoto } from "../lib/utils";
 
 const DEFAULT_LOCALE = "en-US";
 
