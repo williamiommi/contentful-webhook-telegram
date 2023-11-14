@@ -100,7 +100,7 @@ module.exports = async (request, response) => {
       `https://yourawesomewebsite.com/${data.slug}`
     );
 
-    await bot.api.sendPhoto(process.env.TELEGRAM_CHANNEL, photoUrl, {
+    await bot.api.sendPhoto(process.env.TELEGRAM_CHANNEL, `https:${photoUrl}`, {
       parse_mode: "HTML",
       caption: `Hello subscribers!! We just released a new recipe.\n\nToday's recipe is <strong>${data.title}</strong>`,
       reply_markup: inlineLink,
