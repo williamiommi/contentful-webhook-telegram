@@ -100,15 +100,11 @@ module.exports = async (request, response) => {
       `https://yourawesomewebsite.com/${data.slug}`
     );
 
-    await bot.api.sendPhoto(
-      process.env.TELEGRAM_CHANNEL,
-      photoUrl,
-      {
-        parse_mode: "HTML",
-        caption: `Hello subscribers!! We just released a new recipe.\n\nToday's recipe is <strong>${data.title}</strong>`,
-      },
-      { reply_markup: inlineLink }
-    );
+    await bot.api.sendPhoto(process.env.TELEGRAM_CHANNEL, photoUrl, {
+      parse_mode: "HTML",
+      caption: `Hello subscribers!! We just released a new recipe.\n\nToday's recipe is <strong>${data.title}</strong>`,
+      reply_markup: inlineLink,
+    });
 
     response.status(200).send("");
   } catch (e) {
