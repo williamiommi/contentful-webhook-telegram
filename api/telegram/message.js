@@ -1,4 +1,4 @@
-const { Bot } = require("grammy");
+const { Bot, InlineKeyboard } = require("grammy");
 
 const allowCors = (fn) => async (req, res) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
