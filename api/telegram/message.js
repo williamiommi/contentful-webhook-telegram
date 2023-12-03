@@ -13,6 +13,7 @@ const handler = (request, response) => {
     console.log("received call from telegram sender");
     console.log(request.headers);
     console.log(request.body);
+    response.status(200).send("");
   } catch (e) {
     console.error(e);
     return response.status(500).json({ error: e });
