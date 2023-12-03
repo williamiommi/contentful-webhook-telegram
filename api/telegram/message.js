@@ -1,4 +1,5 @@
 module.exports = async (request, response) => {
+  response.setHeader("Access-Control-Allow-Origin", "*");
   try {
     console.log("received call from telegram sender");
     console.log(request.headers);
