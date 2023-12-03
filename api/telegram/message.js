@@ -1,5 +1,6 @@
 const allowCors = (fn) => async (req, res) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Headers", "*");
   if (req.method === "OPTIONS") {
     res.status(200).end();
     return;
@@ -8,7 +9,6 @@ const allowCors = (fn) => async (req, res) => {
 };
 
 const handler = (request, response) => {
-  response.setHeader("Access-Control-Allow-Origin", "*");
   try {
     console.log("received call from telegram sender");
     console.log(request.headers);
