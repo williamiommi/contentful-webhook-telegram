@@ -10,6 +10,7 @@
     "typescript": "^5.0.0"
   },
   "dependencies": {
+    "@contentful/node-apps-toolkit": "^2.8.0",
     "contentful-management": "^11.5.1",
     "crypto": "^1.0.1",
     "grammy": "^1.19.2",
